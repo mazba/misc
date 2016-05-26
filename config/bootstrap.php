@@ -75,6 +75,8 @@ use Cake\Utility\Security;
 try {
     Configure::config('default', new PhpConfig());
     Configure::load('app', 'default', false);
+    Configure::load('mcake', 'default');
+    Configure::load('common', 'default');
 } catch (\Exception $e) {
     exit($e->getMessage() . "\n");
 }
