@@ -106,3 +106,42 @@
     -moz-box-shadow: 0px 2px 3px 0px rgba(107,119,143,1);
     box-shadow: 0px 2px 3px 0px rgba(107,119,143,1)!important;
 }
+
+/* page loader */
+
+#loader{
+    width: 100%;
+    height: 100%;
+    background: #9adad6;
+    position: fixed;
+    top: 1px;
+    opacity: .55;
+    display: none;
+}
+#loader img {
+    position: fixed;
+    top: 314px;
+    left: 737px;
+    z-index: 9999;
+}
+
+.portlet > .portlet-title > .tools > a{
+    height: 28px!important;
+}
+
+
+/*design for website */
+.website .page-header.navbar{
+    background-color: #DB2A27 !important;
+}
+.website .page-header{
+    -webkit-box-shadow: 0px 2px 3px 0px rgb(178, 178, 174);
+    -moz-box-shadow: 0px 2px 3px 0px rgb(178, 178, 174);
+    box-shadow: 0px 2px 3px 0px rgb(178, 178, 174)!important;
+}
+.website{
+    background-color: #fff!important;
+}
+.page-logo a:hover{
+    text-decoration: none;
+}
