@@ -132,20 +132,5 @@ class OfficesController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
-    public function ajax($action){
-        if($action == 'get_zone_district')
-        {
-            $division_id = $this->request->data('division_id');
-            $AreaDistricts=$this->Offices->Districts->find('list')->where(['division_id'=>$division_id]);
-            $this->response->body(json_encode(['district'=>$AreaDistricts]));
-            return $this->response;
-        }
-        elseif($action == 'get_upazila')
-        {
-            $district_id = $this->request->data('district_id');
-            $AreaUpazilas=$this->Offices->Upazilas->find('list')->where(['district_id'=>$district_id]);
-            $this->response->body(json_encode($AreaUpazilas));
-            return $this->response;
-        }
-    }
+
 }

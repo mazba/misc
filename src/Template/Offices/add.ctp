@@ -54,13 +54,14 @@ $office_types=array_flip(Configure::read('office_types'));
 </div>
 <script>
     $(document).ready(function(){
+
         $(document).on('change','#division-id',function(){
             var division_id = $(this).val();
             $('#district-id').html('');
             if(division_id)
             {
                 $.ajax({
-                    url: '<?=$this->Url->build(('/Offices/ajax/get_zone_district'), true)?>',
+                    url: '<?=$this->Url->build(('/Common/ajax/get_zone_district'), true)?>',
                     type: 'POST',
                     data:{division_id:division_id},
                     success: function (data, status)
@@ -91,7 +92,7 @@ $office_types=array_flip(Configure::read('office_types'));
             if(district_id)
             {
                 $.ajax({
-                    url: '<?=$this->Url->build(('/Offices/ajax/get_upazila'), true)?>',
+                    url: '<?=$this->Url->build(('/Common/ajax/get_upazila'), true)?>',
                     type: 'POST',
                     data:{district_id:district_id},
                     success: function (data, status)

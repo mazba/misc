@@ -43,7 +43,7 @@ class UsersTable extends Table
             'foreignKey' => 'user_group_id',
             'joinType' => 'INNER'
         ]);
-        $this->hasMany('UserBasics', [
+        $this->hasOne('UserBasics', [
             'foreignKey' => 'user_id'
         ]);
     }
@@ -80,8 +80,7 @@ class UsersTable extends Table
             ->allowEmpty('picture_alt');
 
         $validator
-            ->requirePresence('picture', 'create')
-            ->notEmpty('picture');
+            ->allowEmpty('picture');
 
         $validator
             ->integer('status')
@@ -90,23 +89,19 @@ class UsersTable extends Table
 
         $validator
             ->integer('create_by')
-            ->requirePresence('create_by', 'create')
-            ->notEmpty('create_by');
+            ->allowEmpty('create_by');
 
         $validator
             ->integer('create_date')
-            ->requirePresence('create_date', 'create')
-            ->notEmpty('create_date');
+            ->allowEmpty('create_date');
 
         $validator
             ->integer('update_by')
-            ->requirePresence('update_by', 'create')
-            ->notEmpty('update_by');
+            ->allowEmpty('update_by');
 
         $validator
             ->integer('update_date')
-            ->requirePresence('update_date', 'create')
-            ->notEmpty('update_date');
+            ->allowEmpty('update_date');
 
         return $validator;
     }

@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
+
 
 /**
  * Users Controller
@@ -22,7 +24,6 @@ class UsersController extends AppController
             'contain' => ['Offices', 'UserGroups']
         ];
         $users = $this->paginate($this->Users);
-
         $this->set(compact('users'));
         $this->set('_serialize', ['users']);
     }
@@ -53,7 +54,23 @@ class UsersController extends AppController
     {
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
-            $user = $this->Users->patchEntity($user, $this->request->data);
+            $auth = $this->Auth->user();
+            $time = time();
+            $data= $this->request->data;
+
+            $data['create_by'] = $auth['id'];
+            $data['create_date'] = $time;
+
+            $data['user_basics']['create_by'] = $auth['id'];
+            $data['user_basics']['create_date'] = $time;
+            $data['user_basic']['date_of_birth'] = strtotime($data['user_basic']['date_of_birth']);
+            $data['status']=1;
+
+            $user = $this->Users->patchEntity($user, $data,[
+                'associated'=>['UserBasics']
+            ]);
+
+      //      echo "<pre/>"; print_r($user);die();
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
                 return $this->redirect(['action' => 'index']);
@@ -61,9 +78,12 @@ class UsersController extends AppController
                 $this->Flash->error(__('The user could not be saved. Please, try again.'));
             }
         }
+
         $offices = $this->Users->Offices->find('list', ['limit' => 200]);
         $userGroups = $this->Users->UserGroups->find('list', ['limit' => 200]);
-        $this->set(compact('user', 'offices', 'userGroups'));
+        $designations = $this->Users->Designations->find('list', ['limit' => 200]);
+        $divisions = TableRegistry::get('Divisions')->find('list', ['limit' => 200]);
+        $this->set(compact('user', 'offices', 'userGroups','designations','divisions'));
         $this->set('_serialize', ['user']);
     }
 

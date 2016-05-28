@@ -1,7 +1,9 @@
 <?php
 namespace App\Model\Entity;
 
+use Cake\Auth\DefaultPasswordHasher;
 use Cake\ORM\Entity;
+
 
 /**
  * User Entity.
@@ -10,6 +12,7 @@ use Cake\ORM\Entity;
  * @property int $office_id
  * @property \App\Model\Entity\Office $office
  * @property int $designation_id
+ * @property \App\Model\Entity\Designation $designation
  * @property int $user_group_id
  * @property \App\Model\Entity\UserGroup $user_group
  * @property string $full_name_bn
@@ -23,8 +26,7 @@ use Cake\ORM\Entity;
  * @property int $create_date
  * @property int $update_by
  * @property int $update_date
- * @property \App\Model\Entity\UserBasic $user_basic
- * @property \App\Model\Entity\UserDesignation[] $user_designations
+ * @property \App\Model\Entity\UserBasic[] $user_basics
  */
 class User extends Entity
 {
@@ -43,12 +45,20 @@ class User extends Entity
         'id' => false,
     ];
 
+    protected function _setPassword($password)
+    {
+        if (strlen($password) > 0)
+        {
+            return (new DefaultPasswordHasher)->hash($password);
+        }
+
+    }
     /**
      * Fields that are excluded from JSON an array versions of the entity.
      *
      * @var array
      */
-    protected $_hidden = [
-        'password'
-    ];
+//    protected $_hidden = [
+//        'password'
+//    ];
 }
