@@ -4,29 +4,24 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * User Entity.
+ * Designation Entity.
  *
  * @property int $id
+ * @property int $parent_id
+ * @property \App\Model\Entity\ParentDesignation $parent_designation
  * @property int $office_id
  * @property \App\Model\Entity\Office $office
- * @property int $designation_id
- * @property int $user_group_id
- * @property \App\Model\Entity\UserGroup $user_group
- * @property string $full_name_bn
- * @property string $full_name_en
- * @property string $username
- * @property string $password
- * @property string $picture_alt
- * @property string $picture
+ * @property string $name_en
+ * @property string $name_bn
  * @property int $status
  * @property int $create_by
  * @property int $create_date
  * @property int $update_by
  * @property int $update_date
- * @property \App\Model\Entity\UserBasic $user_basic
- * @property \App\Model\Entity\UserDesignation[] $user_designations
+ * @property \App\Model\Entity\ChildDesignation[] $child_designations
+ * @property \App\Model\Entity\User[] $users
  */
-class User extends Entity
+class Designation extends Entity
 {
 
     /**
@@ -41,14 +36,5 @@ class User extends Entity
     protected $_accessible = [
         '*' => true,
         'id' => false,
-    ];
-
-    /**
-     * Fields that are excluded from JSON an array versions of the entity.
-     *
-     * @var array
-     */
-    protected $_hidden = [
-        'password'
     ];
 }

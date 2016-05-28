@@ -22,8 +22,6 @@ $office_types=array_flip(Configure::read('office_types'));
                         <?php
                         echo $this->Form->input('name_bn');
                         echo $this->Form->input('name_en');
-                        echo $this->Form->input('short_name_bn');
-                        echo $this->Form->input('short_name_en');
                         echo $this->Form->input('code');
                         echo $this->Form->input('phone');
                         echo $this->Form->input('mobile');

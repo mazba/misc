@@ -1,21 +1,21 @@
 <?php
 namespace App\Model\Table;
 
-use App\Model\Entity\User;
+use App\Model\Entity\Designation;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Users Model
+ * Designations Model
  *
+ * @property \Cake\ORM\Association\BelongsTo $ParentDesignations
  * @property \Cake\ORM\Association\BelongsTo $Offices
- * @property \Cake\ORM\Association\BelongsTo $Designations
- * @property \Cake\ORM\Association\BelongsTo $UserGroups
- * @property \Cake\ORM\Association\HasMany $UserBasics
+ * @property \Cake\ORM\Association\HasMany $ChildDesignations
+ * @property \Cake\ORM\Association\HasMany $Users
  */
-class UsersTable extends Table
+class DesignationsTable extends Table
 {
 
     /**
@@ -28,23 +28,24 @@ class UsersTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('users');
-        $this->displayField('full_name_bn');
+        $this->table('designations');
+        $this->displayField('name_bn');
         $this->primaryKey('id');
 
+        $this->belongsTo('ParentDesignations', [
+            'className' => 'Designations',
+            'foreignKey' => 'parent_id'
+        ]);
         $this->belongsTo('Offices', [
             'foreignKey' => 'office_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('Designations', [
+        $this->hasMany('ChildDesignations', [
+            'className' => 'Designations',
+            'foreignKey' => 'parent_id'
+        ]);
+        $this->hasMany('Users', [
             'foreignKey' => 'designation_id'
-        ]);
-        $this->belongsTo('UserGroups', [
-            'foreignKey' => 'user_group_id',
-            'joinType' => 'INNER'
-        ]);
-        $this->hasMany('UserBasics', [
-            'foreignKey' => 'user_id'
         ]);
     }
 
@@ -61,32 +62,16 @@ class UsersTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->requirePresence('full_name_bn', 'create')
-            ->notEmpty('full_name_bn');
+            ->requirePresence('name_en', 'create')
+            ->notEmpty('name_en');
 
         $validator
-            ->requirePresence('full_name_en', 'create')
-            ->notEmpty('full_name_en');
-
-        $validator
-            ->requirePresence('username', 'create')
-            ->notEmpty('username');
-
-        $validator
-            ->requirePresence('password', 'create')
-            ->notEmpty('password');
-
-        $validator
-            ->allowEmpty('picture_alt');
-
-        $validator
-            ->requirePresence('picture', 'create')
-            ->notEmpty('picture');
+            ->requirePresence('name_bn', 'create')
+            ->notEmpty('name_bn');
 
         $validator
             ->integer('status')
-            ->requirePresence('status', 'create')
-            ->notEmpty('status');
+            ->allowEmpty('status');
 
         $validator
             ->integer('create_by')
@@ -100,13 +85,11 @@ class UsersTable extends Table
 
         $validator
             ->integer('update_by')
-            ->requirePresence('update_by', 'create')
-            ->notEmpty('update_by');
+            ->allowEmpty('update_by');
 
         $validator
             ->integer('update_date')
-            ->requirePresence('update_date', 'create')
-            ->notEmpty('update_date');
+            ->allowEmpty('update_date');
 
         return $validator;
     }
@@ -120,10 +103,8 @@ class UsersTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['username']));
+        $rules->add($rules->existsIn(['parent_id'], 'ParentDesignations'));
         $rules->add($rules->existsIn(['office_id'], 'Offices'));
-        $rules->add($rules->existsIn(['designation_id'], 'Designations'));
-        $rules->add($rules->existsIn(['user_group_id'], 'UserGroups'));
         return $rules;
     }
 }

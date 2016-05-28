@@ -58,7 +58,7 @@ class OfficesController extends AppController
         if ($this->request->is('post')) {
             $data = $this->request->data;
             $data['create_by'] = $user['id'];
-            $data['create_date'] = $time;
+            $data['update_time'] = $time;
 
             $office = $this->Offices->patchEntity($office, $data);
 //            echo"<pre/>";
@@ -86,11 +86,18 @@ class OfficesController extends AppController
      */
     public function edit($id = null)
     {
+        $user = $this->Auth->user();
+        $time = time();
+
         $office = $this->Offices->get($id, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $office = $this->Offices->patchEntity($office, $this->request->data);
+
+            $data['update_by'] = $user['id'];
+            $data['update_time'] = $time;
+
+            $office = $this->Offices->patchEntity($office,$data);
             if ($this->Offices->save($office)) {
                 $this->Flash->success(__('The office has been saved.'));
                 return $this->redirect(['action' => 'index']);

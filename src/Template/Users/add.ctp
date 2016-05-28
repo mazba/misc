@@ -39,7 +39,6 @@ $religions = \Cake\Core\Configure::read('religions');
                 <div class="tabbable-custom ">
                     <ul class="nav nav-tabs ">
                         <li class="active"><a href="#tab_5_1" data-toggle="tab"><?= __('Basic')?></a></li>
-                        <li><a href="#tab_5_4" data-toggle="tab"><?= __('Designation');?></a></li>
                         <li><a href="#tab_5_9" data-toggle="tab"><?= __('Login Info');?></a></li>
                     </ul>
                     <div class="tab-content">
@@ -79,58 +78,7 @@ $religions = \Cake\Core\Configure::read('religions');
                         </div>
 
 
-                        <div class="tab-pane" id="tab_5_4">
-                            <div class="row " >
-                                <div class="designationWrapper">
-                                    <div class="col-md-12 designation">
-                                        <h3>Office Designation</h3>
-                                        <hr/>
-                                        <div class="col-md-6">
-                                            <?php
-                                            echo $this->Form->input('user_designations.0.designation_id',['options'=>$Designations,'empty'=>'Select','class'=>'form-control designation_id','label'=>__('Designation')]);
 
-                                            ?>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <?php
-                                            echo $this->Form->input('user_designations.0.designation_order',['type'=>'text','options'=>[],'empty'=>'Select','class'=>'form-control','label'=>__('Designation Order')]);
-                                            echo $this->Form->input('user_designations.0.starting_date',['type'=>'text','class'=>'form-control datepicker','label'=>__('Starting Date')]);
-                                            echo $this->Form->input('user_designations.0.ending_date',['type'=>'text','class'=>'form-control datepicker','label'=>__('Ending Date')]);
-                                            echo $this->Form->hidden('user_designations.0.is_basic',['value'=>1]);
-                                            ?>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-md-12 single_list_designation list_designation" data-index_no="1">
-                                        <h3>Unit Designation</h3>
-                                        <hr/>
-                                        <div class="form-group "><span class="btn btn-sm btn-circle btn-danger remove pull-right"><i class="fa fa-close"></i></span></div>
-                                        <div class="col-md-6">
-                                            <?php
-
-                                            echo $this->Form->input('user_designations.1.office_unit_id',['options'=>$OfficeUnits,'empty'=>'Select','class'=>'form-control office_unit_id','label'=>__('Office Unit')]);
-                                            echo $this->Form->input('user_designations.1.designation_id',['options'=>[],'empty'=>'Select','class'=>'form-control office_unit_designation_id','label'=>__('Office Unit Designation')]);
-
-                                            ?>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <?php
-                                            echo $this->Form->input('user_designations.1.designation_order',['type'=>'text','options'=>[],'empty'=>'Select','class'=>'form-control','label'=>__('Designation Order')]);
-
-                                            echo $this->Form->input('user_designations.1.starting_date',['type'=>'text','class'=>'form-control datepicker','label'=>__('Starting Date')]);
-                                            echo $this->Form->input('user_designations.1.ending_date',['type'=>'text','class'=>'form-control datepicker','label'=>__('Ending Date')]);
-                                            ?>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                            <div class="row col-md-offset-11">
-                                <input type="button" class="btn btn-circle green add_more_designation" value="Add" />
-                            </div>
-                        </div>
 
                         <div class="tab-pane" id="tab_5_9">
                             <div class="row whiteWrapper loginWrapper">
