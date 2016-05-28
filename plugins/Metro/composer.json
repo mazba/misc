@@ -1,0 +1,23 @@
+{
+    "name": "Metro/Metro",
+    "description": "Cake Bake Template. Created by Moh.Ibbrahim Al Naz Metro ",
+    "type": "cakephp-plugin",
+    "require": {
+        "php": ">=5.4.16",
+        "cakephp/cakephp": "~3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Metro\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Metro\\Test\\": "tests",
+            "Cake\\Test\\": "./vendor/cakephp/cakephp/tests"
+        }
+    }
+}
