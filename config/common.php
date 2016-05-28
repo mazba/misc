@@ -90,10 +90,18 @@ return [
         'User Transfer'=>6,
         'Office Order'=>7,
     ],
+
     'office_types' => [
       'Division' => 1,
        'District'  =>2,
        'Upazila'  =>3,
+    ],
+    'office_level'=>[
+        '1'=>'HQ',
+        '2'=>'বিভাগীয়',
+        '4'=>'জেলা',
+        '5'=>'উপজেলা',
+    //    '6'=>'ইউনিয়ন'
     ],
     'lpr_range'=>60,//Leave preparatory to Retirement
     'experience_report_type'=>['1'=>'Remaining Time Of LPR', '2'=>'Years Of Experience'],
