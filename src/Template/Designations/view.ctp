@@ -1,3 +1,7 @@
+<?php
+$status = \Cake\Core\Configure::read('status_options');
+?>
+
 <div class="page-bar">
     <ul class="page-breadcrumb">
         <li>
@@ -20,77 +24,38 @@
         <div class="portlet box blue-hoki">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-coffee"></i><?= __('Designation List') ?>
+                    <i class="fa fa-picture-o fa-lg"></i><?= __('Designation Details') ?>
                 </div>
                 <div class="tools">
-                    <?= $this->Html->link(__('Back'), ['action' => 'index'], ['class' => 'btn btn-sm btn-success']); ?>
+                    <?= $this->Html->link(__('Back'), ['action' => 'index'],['class'=>'btn btn-sm btn-success']); ?>
                 </div>
             </div>
             <div class="portlet-body">
                 <div class="table-scrollable">
                     <table class="table table-bordered table-hover">
-                        <tr>
-                            <th><?= __('Parent Designation') ?></th>
-                            <td><?= $designation->has('parent_designation') ? $this->Html->link($designation->parent_designation->id, ['controller' => 'Designations', 'action' => 'view', $designation->parent_designation->id]) : '' ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Office') ?></th>
-                            <td><?= $designation->has('office') ? $this->Html->link($designation->office->name_en, ['controller' => 'Offices', 'action' => 'view', $designation->office->id]) : '' ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Office Unit Designation') ?></th>
-                            <td>
-                                <?php
-                                //TODO:: need to add office unit
-                                //echo $designation->has('office_unit_designation') ? $this->Html->link($designation->office_unit_designation->id, ['controller' => 'OfficeUnitDesignations', 'action' => 'view', $designation->office_unit_designation->id]) : ''
-                                ?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Name En') ?></th>
-                            <td><?= h($designation->name_en) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Name Bn') ?></th>
-                            <td><?= h($designation->name_bn) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Id') ?></th>
-                            <td><?= $this->Number->format($designation->id) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Level Number') ?></th>
-                            <td><?= $this->Number->format($designation->level_number) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Sequence Number') ?></th>
-                            <td><?= $this->Number->format($designation->sequence_number) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Post Number') ?></th>
-                            <td><?= $this->Number->format($designation->post_number) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Status') ?></th>
-                            <td><?= $this->Number->format($designation->status) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Created By') ?></th>
-                            <td><?= $this->Number->format($designation->created_by) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Created Date') ?></th>
-                            <td><?= $this->Number->format($designation->created_date) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Updated By') ?></th>
-                            <td><?= $this->Number->format($designation->updated_by) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Updated Date') ?></th>
-                            <td><?= $this->Number->format($designation->updated_date) ?></td>
-                        </tr>
-                    </table>
+                                                                                                        <tr>
+                                    <th><?= __('Parent Designation') ?></th>
+                                    <td><?= $designation->has('parent_designation') ? $this->Html->link($designation->parent_designation->name_bn, ['controller' => 'Designations', 'action' => 'view', $designation->parent_designation->id]) : '' ?></td>
+                                </tr>
+                                                                                                        <tr>
+                                    <th><?= __('Office') ?></th>
+                                    <td><?= $designation->has('office') ? $this->Html->link($designation->office->name_bn, ['controller' => 'Offices', 'action' => 'view', $designation->office->id]) : '' ?></td>
+                                </tr>
+                                                                                                        <tr>
+                                    <th><?= __('Name En') ?></th>
+                                    <td><?= h($designation->name_en) ?></td>
+                                </tr>
+                                                                                                        <tr>
+                                    <th><?= __('Name Bn') ?></th>
+                                    <td><?= h($designation->name_bn) ?></td>
+                                </tr>
+                                                                                                                                                                                                                
+                            
+                                <tr>
+                                    <th><?= __('Status') ?></th>
+                                    <td><?= __($status[$designation->status]) ?></td>
+                                </tr>
+                                                                                                                                                                                                                                                                                                                                                                            </table>
                 </div>
             </div>
         </div>

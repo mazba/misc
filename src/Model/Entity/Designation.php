@@ -8,7 +8,7 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int $parent_id
- * @property \App\Model\Entity\ParentDesignation $parent_designation
+ * @property \App\Model\Entity\Designation $parent_designation
  * @property int $office_id
  * @property \App\Model\Entity\Office $office
  * @property string $name_en
@@ -18,7 +18,7 @@ use Cake\ORM\Entity;
  * @property int $create_date
  * @property int $update_by
  * @property int $update_date
- * @property \App\Model\Entity\ChildDesignation[] $child_designations
+ * @property \App\Model\Entity\Designation[] $child_designations
  * @property \App\Model\Entity\User[] $users
  */
 class Designation extends Entity

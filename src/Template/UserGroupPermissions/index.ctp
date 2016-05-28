@@ -31,13 +31,13 @@
                             foreach($user_groups as $user_group){
                                 ?>
                                 <tr>
-                                    <td><?= $user_group['title_en'] ?></td>
+                                    <td><span class="label label-info" style="font-weight: bold"><?= $user_group['title_en'] ?></span></td>
                                     <td><?= $user_group['created']['full_name_bn'] ?></td>
                                     <td><?= date('d-m-Y H:m',$user_group['created_time']) ?></td>
                                     <td><?= $user_group['updated']['full_name_bn'] ?></td>
                                     <td><?= date('d-m-Y H:m',$user_group['updated_time']) ?></td>
                                     <td>
-                                        <?= $this->Html->link(__('Role'), ['action' => 'edit', $user_group['id']],['class'=>'btn-sm btn btn-danger']) ?>
+                                        <?= $this->Html->link(__('Set Role'), ['action' => 'edit', $user_group['id']],['class'=>'btn-sm btn btn-danger']) ?>
                                     </td>
                                 </tr>
                                 <?php

@@ -18,7 +18,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- BEGIN HEAD -->
 <head>
     <meta charset="utf-8"/>
-    <title>বাংলাদেশে স্থানীয় সরকার</title>
+    <title><?= __('MISC Case Management System') ?></title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -53,7 +53,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- END SIDEBAR TOGGLER BUTTON -->
 <!-- BEGIN LOGO -->
 <div class="logo">
-        <h1 style="color: #f1f1e3"><b>স্থানীয় সরকার পল্লী উন্নয়ন বিভাগ</b></h1>
+        <h1 style="color: #f1f1e3"><b><?= __('MISC Case Management System') ?></b></h1>
 
 </div>
 <!-- END LOGO -->

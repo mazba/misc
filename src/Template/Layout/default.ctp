@@ -3,15 +3,14 @@ $user = $this->request->Session()->read('Auth')['User'];
 ?>
 <!DOCTYPE html>
 <!-- 
-Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.1
-Version: 3.6
-Author: KeenThemes
-Website: http://www.keenthemes.com/
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Like: www.facebook.com/keenthemes
-Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
-License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
+Name: Mazba's Cake
+Version: 1.6
+Author: Mazba Kamal
+Website: http://www.soft-bd.com/
+Contact: mazba.cse@gmail.com
+Follow: www.twitter.com/mazba_kamal
+Like: www.facebook.com/mazbakamal
+License: You must have a valid license purchased only from softbd
 -->
 <!--[if IE 8]>
 <html lang="en" class="ie8 no-js"> <![endif]-->

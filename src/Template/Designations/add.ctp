@@ -37,11 +37,10 @@ use Cake\Core\Configure;
                 <div class="row">
                     <div class="col-md-6 col-md-offset-3">
                         <?php
-                        echo $this->Form->input('parent_id', ['class'=>'select2me form-control','options' => $parentDesignations, 'empty' => __('Select')]);
-                        echo $this->Form->input('office_id', ['class'=>'select2me form-control','options' => $offices, 'empty' => __('Select')]);
+                        echo $this->Form->input('parent_id', ['options' => $parentDesignations, 'empty' => __('Select')]);
+                        echo $this->Form->input('office_id', ['options' => $offices, 'empty' => __('Select')]);
                         echo $this->Form->input('name_en');
                         echo $this->Form->input('name_bn');
-
                         echo $this->Form->input('status', ['options' => Configure::read('status_options')]);
                         ?>
                         <?= $this->Form->button(__('Submit'), ['class' => 'btn blue pull-right', 'style' => 'margin-top:20px']) ?>

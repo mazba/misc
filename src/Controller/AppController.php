@@ -72,6 +72,12 @@ class AppController extends Controller
             ]
         ]);
     }
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        $auth_usr = $this->Auth->user();
+        $this->set('auth_usr',$auth_usr);
+    }
 
     /**
      * Before render callback.

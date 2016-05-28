@@ -9,11 +9,6 @@ use Cake\Validation\Validator;
 
 /**
  * Designations Model
- *
- * @property \Cake\ORM\Association\BelongsTo $ParentDesignations
- * @property \Cake\ORM\Association\BelongsTo $Offices
- * @property \Cake\ORM\Association\HasMany $ChildDesignations
- * @property \Cake\ORM\Association\HasMany $Users
  */
 class DesignationsTable extends Table
 {
@@ -26,12 +21,9 @@ class DesignationsTable extends Table
      */
     public function initialize(array $config)
     {
-        parent::initialize($config);
-
         $this->table('designations');
         $this->displayField('name_bn');
         $this->primaryKey('id');
-
         $this->belongsTo('ParentDesignations', [
             'className' => 'Designations',
             'foreignKey' => 'parent_id'
@@ -58,38 +50,20 @@ class DesignationsTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->integer('id')
+            ->add('id', 'valid', ['rule' => 'integer'])
             ->allowEmpty('id', 'create');
-
+            
         $validator
             ->requirePresence('name_en', 'create')
             ->notEmpty('name_en');
-
+            
         $validator
             ->requirePresence('name_bn', 'create')
             ->notEmpty('name_bn');
-
+            
         $validator
-            ->integer('status')
+            ->add('status', 'valid', ['rule' => 'integer'])
             ->allowEmpty('status');
-
-        $validator
-            ->integer('create_by')
-            ->requirePresence('create_by', 'create')
-            ->notEmpty('create_by');
-
-        $validator
-            ->integer('create_date')
-            ->requirePresence('create_date', 'create')
-            ->notEmpty('create_date');
-
-        $validator
-            ->integer('update_by')
-            ->allowEmpty('update_by');
-
-        $validator
-            ->integer('update_date')
-            ->allowEmpty('update_date');
 
         return $validator;
     }
