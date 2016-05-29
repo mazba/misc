@@ -35,16 +35,18 @@ return [
         1 => 'Active',
         2 => 'In-Active'
     ],
-    'office_types' => [
-      'Division' => 1,
-       'District'  =>2,
-       'Upazila'  =>3,
-    ],
     'office_level'=>[
         '1'=>'HQ',
         '2'=>'বিভাগীয়',
-        '4'=>'জেলা',
-        '5'=>'উপজেলা',
+        '3'=>'জেলা',
+        '4'=>'উপজেলা',
     //    '6'=>'ইউনিয়ন'
+    ],
+    'application_status'=>[
+        'Reject'=>0,
+        'Pending'=>1,
+        'Approved'=>2,
+        'Investigating'=>3,
+        'Closed'=>4,
     ]
 ];
