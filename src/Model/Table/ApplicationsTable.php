@@ -18,8 +18,10 @@ use Cake\Validation\Validator;
  * @property \Cake\ORM\Association\BelongsTo $Moujas
  * @property \Cake\ORM\Association\HasMany $ApplicationFiles
  * @property \Cake\ORM\Association\HasMany $ChildApplications
+ * @property \Cake\ORM\Association\HasMany $Hearings
  * @property \Cake\ORM\Association\HasMany $InspectionResultFiles
  * @property \Cake\ORM\Association\HasMany $InspectionResults
+ * @property \Cake\ORM\Association\HasMany $Parties
  * @property \Cake\ORM\Association\HasMany $Payments
  */
 class ApplicationsTable extends Table
@@ -70,10 +72,16 @@ class ApplicationsTable extends Table
             'className' => 'Applications',
             'foreignKey' => 'parent_id'
         ]);
+        $this->hasMany('Hearings', [
+            'foreignKey' => 'application_id'
+        ]);
         $this->hasMany('InspectionResultFiles', [
             'foreignKey' => 'application_id'
         ]);
         $this->hasMany('InspectionResults', [
+            'foreignKey' => 'application_id'
+        ]);
+        $this->hasMany('Parties', [
             'foreignKey' => 'application_id'
         ]);
         $this->hasMany('Payments', [

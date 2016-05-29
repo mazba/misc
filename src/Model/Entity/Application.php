@@ -8,7 +8,7 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int $parent_id
- * @property \App\Model\Entity\ParentApplication $parent_application
+ * @property \App\Model\Entity\Application $parent_application
  * @property int $office_id
  * @property \App\Model\Entity\Office $office
  * @property int $division_id
@@ -30,7 +30,7 @@ use Cake\ORM\Entity;
  * @property int $update_time
  * @property int $update_by
  * @property \App\Model\Entity\ApplicationFile[] $application_files
- * @property \App\Model\Entity\ChildApplication[] $child_applications
+ * @property \App\Model\Entity\Application[] $child_applications
  * @property \App\Model\Entity\InspectionResultFile[] $inspection_result_files
  * @property \App\Model\Entity\InspectionResult[] $inspection_results
  * @property \App\Model\Entity\Payment[] $payments
