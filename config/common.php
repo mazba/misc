@@ -48,5 +48,13 @@ return [
         'Approved'=>2,
         'Investigating'=>3,
         'Closed'=>4,
+    ],
+    'party_type'=>[
+        'appellant'=>1,
+        'defendant'=>2
+    ],
+    'lawyers_type'=>[
+        'appellant'=>1,
+        'defendant'=>2
     ]
 ];
