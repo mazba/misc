@@ -90,7 +90,7 @@ $office_level = \Cake\Core\Configure::read('office_level');
                                     $user_group_id = $session->read('Auth.User.user_group_id');
                                     if($user_group_id==$user_group['super_admin']) {
 
-                                        echo $this->Form->input('office_level', ['options' => $office_level, 'class' => 'form-control', 'label' => __('office_level'), 'empty' => __('Select')]);
+                                        echo $this->Form->input('office_level', ['options' => array_flip($office_level), 'class' => 'form-control', 'label' => __('office_level'), 'empty' => __('Select')]);
                                         echo "<div id='division'>";
                                         echo $this->Form->input('division_id', ['options' => $divisions, 'empty' => __('Select')]);
                                         echo "</div>";
