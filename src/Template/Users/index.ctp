@@ -31,8 +31,8 @@ $status = \Cake\Core\Configure::read('status_options');
                         <thead>
                         <tr>
                             <th><?= __('Sl. No.') ?></th>
-                            <th><?= __('office_id') ?></th>
-                            <th><?= __('user_group_id') ?></th>
+                            <th><?= __('Office') ?></th>
+                            <th><?= __('User Group') ?></th>
                             <th><?= __('full_name_bn') ?></th>
                             <th><?= __('full_name_en') ?></th>
                             <th><?= __('username') ?></th>
@@ -45,12 +45,12 @@ $status = \Cake\Core\Configure::read('status_options');
                                 <td><?= $this->Number->format($key + 1) ?></td>
                                 <td><?= $user->has('office') ?
                                         $this->Html->link($user->office
-                                            ->id, ['controller' => 'Offices',
+                                            ->name_bn, ['controller' => 'Offices',
                                             'action' => 'view', $user->office
                                                 ->id]) : '' ?></td>
                                 <td><?= $user->has('user_group') ?
                                         $this->Html->link($user->user_group
-                                            ->id, ['controller' => 'UserGroups',
+                                            ->title_bn, ['controller' => 'UserGroups',
                                             'action' => 'view', $user->user_group
                                                 ->id]) : '' ?></td>
                                 <td><?= h($user->full_name_bn) ?></td>

@@ -38,7 +38,7 @@ class UsersController extends AppController
     public function view($id = null)
     {
         $user = $this->Users->get($id, [
-            'contain' => ['Offices', 'UserGroups', 'UserBasics', 'UserDesignations']
+            'contain' => ['Offices', 'UserGroups', 'UserBasics']
         ]);
 
         $this->set('user', $user);
@@ -97,10 +97,30 @@ class UsersController extends AppController
     public function edit($id = null)
     {
         $user = $this->Users->get($id, [
-            'contain' => []
+            'contain' => ['UserBasics']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $user = $this->Users->patchEntity($user, $this->request->data);
+            $auth = $this->Auth->user();
+            $time = time();
+
+            $data=$this->request->data;
+
+            if ($data['update_password']) {
+                $data['password'] = $data['update_password'];
+            } else {
+                $data['password'] = $user['password'];
+            }
+
+            $data['update_by'] = $auth['id'];
+            $data['update_date'] = $time;
+
+            $data['user_basics']['update_time'] = $auth['id'];
+            $data['user_basics']['update_by'] = $time;
+
+            $data['user_basic']['date_of_birth'] = strtotime($data['user_basic']['date_of_birth']);
+
+            $user = $this->Users->patchEntity($user, $data);
+
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
                 return $this->redirect(['action' => 'index']);
@@ -110,7 +130,9 @@ class UsersController extends AppController
         }
         $offices = $this->Users->Offices->find('list', ['limit' => 200]);
         $userGroups = $this->Users->UserGroups->find('list', ['limit' => 200]);
-        $this->set(compact('user', 'offices', 'userGroups'));
+        $designations = $this->Users->Designations->find('list', ['limit' => 200]);
+        $divisions = TableRegistry::get('Divisions')->find('list', ['limit' => 200]);
+        $this->set(compact('user', 'offices', 'userGroups','designations','divisions'));
         $this->set('_serialize', ['user']);
     }
 
