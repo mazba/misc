@@ -81,7 +81,12 @@ class ApplicationsTable extends Table
         $this->hasMany('InspectionResults', [
             'foreignKey' => 'application_id'
         ]);
-        $this->hasMany('Parties', [
+        $this->hasMany('Appellants', [
+            'className'=>'Parties',
+            'foreignKey' => 'application_id'
+        ]);
+        $this->hasMany('Defendants', [
+            'className'=>'Parties',
             'foreignKey' => 'application_id'
         ]);
         $this->hasMany('Payments', [

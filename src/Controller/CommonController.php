@@ -44,10 +44,62 @@ class CommonController extends AppController
             }if(!empty($upazila_id)){
                 $Offices->where([ 'upazila_id'=>$upazila_id]);
             }
-
+            $Offices->where([ 'upazila_id !='=>99]);
             $this->response->body(json_encode($Offices));
             return $this->response;
         }
+
+        elseif($action == 'get_mouja') {
+            $division_id = $this->request->data('division_id');
+            $district_id = $this->request->data('district_id');
+            $upazila_id = $this->request->data('upazila_id');
+
+            $Moujas=TableRegistry::get('moujas')->find('list');
+
+            if(!empty($division_id)){
+                $Moujas->where([ 'division_id'=>$division_id]);
+            }if(!empty($district_id)){
+                $Moujas->where([ 'district_id'=>$district_id]);
+            }if(!empty($upazila_id)){
+                $Moujas->where([ 'upazila_lisa_id'=>$upazila_id]);
+            }
+            $Moujas->where([ 'status !='=>99]);
+            $this->response->body(json_encode($Moujas));
+            return $this->response;
+        }
+
+        elseif($action == 'get_mouja_office') {
+            $division_id = $this->request->data('division_id');
+            $district_id = $this->request->data('district_id');
+            $upazila_id = $this->request->data('upazila_id');
+
+            $Moujas=TableRegistry::get('moujas')->find('list');
+            if(!empty($division_id)){
+                $Moujas->where([ 'division_id'=>$division_id]);
+            }if(!empty($district_id)){
+                $Moujas->where([ 'district_id'=>$district_id]);
+            }if(!empty($upazila_id)){
+                $Moujas->where([ 'upazila_lisa_id'=>$upazila_id]);
+            }
+            $Moujas->where([ 'status !='=>99]);
+
+
+            $Offices=TableRegistry::get('offices')->find('list');
+
+            if(!empty($division_id)){
+                $Offices->where([ 'division_id'=>$division_id]);
+            }if(!empty($district_id)){
+                $Offices->where([ 'district_id'=>$district_id]);
+            }if(!empty($upazila_id)){
+                $Offices->where([ 'upazila_id'=>$upazila_id]);
+            }
+            $Offices->where([ 'upazila_id !='=>99]);
+        //    $this->response->body(json_encode(['district'=>$AreaDistricts]));
+            $this->response->body(json_encode(['moujas'=>$Moujas,'office'=>$Offices]));
+            return $this->response;
+        }
+
+
     }
 
 //    /**
