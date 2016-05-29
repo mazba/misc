@@ -40,7 +40,7 @@ return [
         'Divisional'=>2,
         'District'=>3,
         'Upazila'=>4,
-        'Union'=>4,
+//        'Union'=>4,
     ],
     'application_status'=>[
         'Reject'=>0,
