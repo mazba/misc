@@ -58,7 +58,6 @@ $office_level = \Cake\Core\Configure::read('office_level');
                                     echo $this->Form->input('user_basic.date_of_birth', ['class' => 'form-control datepicker', 'type' => 'text']);
                                     echo $this->Form->input('user_basic.place_of_birth', ['class' => 'form-control', 'label' => __('Place Of Birth')]);
                                     echo $this->Form->input('user_basic.nationality', ['class' => 'form-control', 'label' => __('Nationality')]);
-
                                     echo $this->Form->input('user_basic.is_ethnic', ['type' => 'checkbox', 'class' => 'form-control', 'label' => __('Is Ethnic')]);
                                     echo $this->Form->input('user_basic.is_disable', ['type' => 'checkbox', 'class' => 'form-control', 'label' => __('Is Disable')]);
                                     echo $this->Form->input('user_basic.is_married', ['type' => 'checkbox', 'class' => 'form-control married', 'label' => __('Is Married')]);

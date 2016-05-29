@@ -41,6 +41,8 @@ class UsersController extends AppController
             'contain' => ['Offices', 'UserGroups', 'UserBasics']
         ]);
 
+      //echo "<pre>";print_r($user);die();
+
         $this->set('user', $user);
         $this->set('_serialize', ['user']);
     }
