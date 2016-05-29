@@ -36,11 +36,11 @@ return [
         2 => 'In-Active'
     ],
     'office_level'=>[
-        '1'=>'HQ',
-        '2'=>'বিভাগীয়',
-        '3'=>'জেলা',
-        '4'=>'উপজেলা',
-    //    '6'=>'ইউনিয়ন'
+        'HQ'=>1,
+        'Divisional'=>2,
+        'District'=>3,
+        'Upazila'=>4,
+        'Union'=>4,
     ],
     'application_status'=>[
         'Reject'=>0,
