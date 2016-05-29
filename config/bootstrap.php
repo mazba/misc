@@ -202,6 +202,7 @@ if (Configure::read('debug')) {
 //custom plugin for system
 //Plugin::load('Xety/Cake3Upload');
 Plugin::load('Metro');
+Plugin::load('Josegonzalez/Upload');
 
 /**
  * Connect middleware/dispatcher filters.

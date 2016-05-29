@@ -36,5 +36,17 @@ class CitizenController extends AppController
     {
 
     }
+    /**
+     * search method
+     *
+     * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
+     */
+    public function search(){
+        $input = $this->request->data();
+        echo '<pre>';
+        print_r($input);
+        echo '</pre>';
+        die;
+    }
 
 }

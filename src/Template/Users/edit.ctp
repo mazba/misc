@@ -74,7 +74,7 @@ $office_level = \Cake\Core\Configure::read('office_level');
                                     echo $this->Form->input('user_basic.tin_number', ['class' => 'form-control', 'label' => __('TIN Number')]);
                                     echo $this->Form->input('user_basic.present_address', ['type' => 'textarea', 'rows' => '2', 'class' => 'form-control', 'label' => __('Present Address')]);
                                     echo $this->Form->input('user_basic.permanent_address', ['type' => 'textarea', 'rows' => '2', 'class' => 'form-control', 'label' => __('Permanent Address')]);
-                                    echo $this->Form->input('picture_name_file', ['class' => '', 'type' => 'file', 'label' => __('Photo')]);
+                                    echo $this->Form->input('picture', ['class' => '', 'type' => 'file', 'label' => __('Photo')]);
                                     ?>
                                 </div>
                             </div>

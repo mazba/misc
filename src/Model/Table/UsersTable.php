@@ -46,6 +46,16 @@ class UsersTable extends Table
         $this->hasOne('UserBasics', [
             'foreignKey' => 'user_id'
         ]);
+
+        $this->addBehavior('Josegonzalez/Upload.Upload', [
+            'picture'=> [
+                'path' => 'webroot{DS}files{DS}Users{DS}{field}{DS}',
+                'nameCallback'=>function($data,$settings){
+                   return isset($data['name']) && $data['name'] ? time().'_'.md5($data['name']).'.'.substr($data['name'], strrpos($data['name'], '.') + 1):'';
+                }
+            ]
+
+            ]);
     }
 
     /**
@@ -56,6 +66,9 @@ class UsersTable extends Table
      */
     public function validationDefault(Validator $validator)
     {
+//        $validator->provider('upload', \Josegonzalez\Upload\Validation\ImageValidation::class);
+        $validator->allowEmpty('picture','update')
+            ->add('picture', 'file', ['rule' => ['extension',array('jpeg','jpg','png','gif')],'message' => 'File type is Not valid!']);
         $validator
             ->integer('id')
             ->allowEmpty('id', 'create');
