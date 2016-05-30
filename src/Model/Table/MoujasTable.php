@@ -30,7 +30,7 @@ class MoujasTable extends Table
         parent::initialize($config);
 
         $this->table('moujas');
-        $this->displayField('dglr_code');
+        $this->displayField('name_bd');
         $this->primaryKey('id');
 
         $this->belongsTo('UpazilaLisas', [
