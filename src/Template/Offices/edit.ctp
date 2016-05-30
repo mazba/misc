@@ -1,7 +1,7 @@
 <?php
 use Cake\Core\Configure;
 $status = Configure::read('status_options');
-$office_types=array_flip(Configure::read('office_types'));
+$office_level=array_flip(Configure::read('office_level'));
 ?>
 <div class="row">
     <div class="col-md-12">
@@ -17,6 +17,7 @@ $office_types=array_flip(Configure::read('office_types'));
             </div>
             <div class="portlet-body">
                 <?= $this->Form->create($office,['class'=>'form-horizontal']) ?>
+
                 <div class="row">
                     <div class="col-md-6">
                         <?php
@@ -28,7 +29,7 @@ $office_types=array_flip(Configure::read('office_types'));
                         echo $this->Form->input('fax');
                         echo $this->Form->input('email');
                         echo $this->Form->input('web_url');
-                        echo $this->Form->input('office_types',['options'=>$office_types]);
+                        echo $this->Form->input('office_type',['options'=>$office_level]);
                         ?>
                     </div>
                     <div class="col-md-6">

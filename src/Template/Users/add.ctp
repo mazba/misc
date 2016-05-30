@@ -86,8 +86,8 @@ $office_level = \Cake\Core\Configure::read('office_level');
                                     <?php
                                     $user_group = \Cake\Core\Configure::read('user_group');
                                     $session = $this->request->session();
-                                    $user_group_id = $session->read('Auth.User.user_group_id');
-                                    if($user_group_id==$user_group['super_admin']) {
+                                    $user = $session->read('Auth.User');
+                                    if($user['user_group_id'] == $user_group['super_admin'] || $user['user_group_id'] == $user_group['hq_office']) {
 
                                         echo $this->Form->input('office_level', ['options' => array_flip($office_level), 'class' => 'form-control', 'label' => __('Office Level'), 'empty' => __('Select')]);
                                         echo "<div id='division'>";
@@ -103,14 +103,6 @@ $office_level = \Cake\Core\Configure::read('office_level');
                                         echo $this->Form->input('office_id', ['empty' => __('Select')]);
                                         echo "</div>";
                                         echo $this->Form->input('user_group_id', ['options' => $userGroups, 'empty' => __('Select'), 'class' => 'form-control', 'label' => __('User Group')]);
-
-                                    }
-                                    else{
-                                        echo $this->Form->input('office_id', ['type'=>'hidden','value'=>$session->read('Auth.User.office_id')]);
-                                        echo $this->Form->input('user_group_id', ['type'=>'hidden','value'=>$session->read('Auth.User.user_group_id')]);
-
-                                        echo "<br/>";
-
                                     }
                                     echo $this->Form->input('designation_id', ['options' => $designations, 'empty' => __('Select'),'class' => 'form-control', 'label' => __('User Designation')]);
                                     echo $this->Form->input('username', ['class' => 'form-control', 'label' => __('Username')]);

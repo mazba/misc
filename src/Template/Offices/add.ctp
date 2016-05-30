@@ -34,7 +34,7 @@ $office_level = Configure::read('office_level');
                     <div class="col-md-6">
                         <?php
                         echo $this->Form->input('parent_id', ['options' => $parentOffices, 'empty' => __('Select')]);
-                        echo $this->Form->input('office_types', ['options' => array_flip($office_level), 'empty' => __('Select')]);
+                        echo $this->Form->input('office_type', ['options' => array_flip($office_level), 'empty' => __('Select')]);
 
                         echo "<div id='division'>";
                         echo $this->Form->input('division_id', ['options' => $divisions, 'empty' => __('Select')]);

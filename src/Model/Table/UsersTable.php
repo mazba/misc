@@ -32,6 +32,16 @@ class UsersTable extends Table
         $this->displayField('full_name_bn');
         $this->primaryKey('id');
 
+        $this->belongsTo('Divisions', [
+            'foreignKey' => 'division_id',
+            'joinType' => 'INNER'
+        ]);
+        $this->belongsTo('Districts', [
+            'foreignKey' => 'district_id'
+        ]);
+        $this->belongsTo('Upazilas', [
+            'foreignKey' => 'upazila_id'
+        ]);
         $this->belongsTo('Offices', [
             'foreignKey' => 'office_id',
             'joinType' => 'INNER'
@@ -43,7 +53,7 @@ class UsersTable extends Table
             'foreignKey' => 'user_group_id',
             'joinType' => 'INNER'
         ]);
-        $this->hasOne('UserBasics', [
+        $this->hasMany('UserBasics', [
             'foreignKey' => 'user_id'
         ]);
 

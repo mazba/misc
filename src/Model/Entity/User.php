@@ -10,6 +10,9 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int $office_id
+ * @property int $division_id
+ * @property int $district_id
+ * @property int $upazila_id
  * @property \App\Model\Entity\Office $office
  * @property int $designation_id
  * @property \App\Model\Entity\Designation $designation

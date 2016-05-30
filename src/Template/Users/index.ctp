@@ -1,5 +1,6 @@
 <?php
 $status = \Cake\Core\Configure::read('status_options');
+$user_group = \Cake\Core\Configure::read('user_group');
 ?>
 
 <div class="page-bar">
@@ -31,8 +32,10 @@ $status = \Cake\Core\Configure::read('status_options');
                         <thead>
                         <tr>
                             <th><?= __('Sl. No.') ?></th>
+                            <?php if($auth_usr['user_group_id'] == $user_group['super_admin'] || $auth_usr['user_group_id'] == $user_group['hq_office']): ?>
                             <th><?= __('Office') ?></th>
                             <th><?= __('User Group') ?></th>
+                            <?php endif; ?>
                             <th><?= __('full_name_bn') ?></th>
                             <th><?= __('full_name_en') ?></th>
                             <th><?= __('username') ?></th>
@@ -43,6 +46,7 @@ $status = \Cake\Core\Configure::read('status_options');
                         <?php foreach ($users as $key => $user) { ?>
                             <tr>
                                 <td><?= $this->Number->format($key + 1) ?></td>
+                                <?php if($auth_usr['user_group_id'] == $user_group['super_admin'] || $auth_usr['user_group_id'] == $user_group['hq_office']): ?>
                                 <td><?= $user->has('office') ?
                                         $this->Html->link($user->office
                                             ->name_bn, ['controller' => 'Offices',
@@ -53,6 +57,7 @@ $status = \Cake\Core\Configure::read('status_options');
                                             ->title_bn, ['controller' => 'UserGroups',
                                             'action' => 'view', $user->user_group
                                                 ->id]) : '' ?></td>
+                            <?php endif; ?>
                                 <td><?= h($user->full_name_bn) ?></td>
                                 <td><?= h($user->full_name_en) ?></td>
                                 <td><?= h($user->username) ?></td>

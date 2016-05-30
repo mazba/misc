@@ -70,8 +70,8 @@ class OfficesController extends AppController
                 $this->Flash->error(__('The office could not be saved. Please, try again.'));
             }
         }
-        $parentOffices = $this->Offices->ParentOffices->find('list', ['limit' => 200]);
-        $divisions = $this->Offices->Divisions->find('list', ['limit' => 200]);
+        $parentOffices = $this->Offices->ParentOffices->find('list');
+        $divisions = $this->Offices->Divisions->find('list');
 
         $this->set(compact('office', 'parentOffices', 'divisions'));
         $this->set('_serialize', ['office']);
@@ -93,7 +93,7 @@ class OfficesController extends AppController
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-
+            $data = $this->request->data;
             $data['update_by'] = $user['id'];
             $data['update_time'] = $time;
 
@@ -105,10 +105,10 @@ class OfficesController extends AppController
                 $this->Flash->error(__('The office could not be saved. Please, try again.'));
             }
         }
-        $parentOffices = $this->Offices->ParentOffices->find('list', ['limit' => 200]);
-        $divisions = $this->Offices->Divisions->find('list', ['limit' => 200]);
-        $districts = $this->Offices->Districts->find('list', ['limit' => 200]);
-        $upazilas = $this->Offices->Upazilas->find('list', ['limit' => 200]);
+        $parentOffices = $this->Offices->ParentOffices->find('list');
+        $divisions = $this->Offices->Divisions->find('list');
+        $districts = $this->Offices->Districts->find('list');
+        $upazilas = $this->Offices->Upazilas->find('list');
         $this->set(compact('office', 'parentOffices', 'divisions', 'districts', 'upazilas'));
         $this->set('_serialize', ['office']);
     }
