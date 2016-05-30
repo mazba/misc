@@ -3,6 +3,7 @@ namespace App\Controller\Component;
 
 use Cake\Controller\Component;
 use Cake\Controller\ComponentRegistry;
+use Cake\Core\Configure;
 use Cake\Utility\Security;
 
 /**
@@ -19,19 +20,15 @@ class CommonComponent extends Component
     protected $_defaultConfig = [];
 
     /*
-     * security key for encoding & decoding
-     */
-    private $key = 'LSDFSDJFTXGenFoZoiLwQGrLgdboMAZBAscakeFS';
-    /*
      * string encode for URL
      */
-    public function encodeString($str){
-        return Security::encrypt($str, $this->key);
-    }
+//    public function encodeString($str){
+//        return Security::encrypt($str, Configure::read('security_key'));
+//    }
     /*
      * string encode for URL
      */
     public function decodeString($str){
-        return Security::decrypt($str, $this->key);
+        return Security::decrypt($str, Configure::read('security_key'));
     }
 }

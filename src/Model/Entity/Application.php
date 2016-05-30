@@ -51,4 +51,12 @@ class Application extends Entity
         '*' => true,
         'id' => false,
     ];
+    protected function _getFormattedCaseCreateTime()
+    {
+        return $this->case_create_time ? date('d-m-Y',$this->case_create_time).' <i class="fa fa-clock-o "></i>      '.date('h:i:s A',$this->case_create_time) : '';
+    }
+    protected function _getFormattedCaseReceiveTime()
+    {
+        return $this->case_receive_time ? date('d-m-Y',$this->case_receive_time).' <i class="fa fa-clock-o "></i>      '.date('h:i:s A',$this->case_receive_time) : '';
+    }
 }

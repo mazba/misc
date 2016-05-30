@@ -21,6 +21,12 @@ class MyHelper extends Helper
      * @var array
      */
     protected $_defaultConfig = [];
+    /*
+     * string encode for URL
+     */
+    public function encodeString($str){
+        return Security::encrypt($str, Configure::read('security_key'));
+    }
     public function get_tree_menu()
     {
         $tasks = TableRegistry::get('tasks')->find('all')->order(['ordering'=>'ASC'])->where(['status'=>1])->toArray();
