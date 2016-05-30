@@ -8,8 +8,10 @@
 return [
     'user_group' => [
         'super_admin' => 1,
-        'office_admin' => 2,
-        'office_user' => 3
+        'hq_office' => 2,
+        'divisional_office' => 3,
+        'district_office' => 4,
+        'upazila_office' => 5,
     ],
 
     'language_options'=>[
