@@ -1,9 +1,5 @@
 <?php
 $status = \Cake\Core\Configure::read('status_options');
-echo '<pre>';
-print_r($this->My->encodeString(1));
-echo '</pre>';
-die;
 ?>
 <div class="row">
     <div class="col-md-12">
@@ -47,7 +43,7 @@ die;
                                 <td><?php echo $application->formatted_case_create_time; ?></td>
                                 <td>
                                     <?php
-                                    echo $this->Html->link(__('Approve/Reject'), ['action' => 'receive', urlencode($this->My->encodeString($appellants->id))], ['class' => 'btn btn-sm btn-warning']);
+                                    echo $this->Html->link(__('Approve/Reject'), ['action' => 'receive', $this->My->hashids()->encode($application->id)], ['class' => 'btn btn-sm btn-warning']);
                                     ?>
                                 </td>
                             </tr>

@@ -91,6 +91,10 @@ class ApplicationsTable extends Table
             'foreignKey' => 'application_id',
             'conditions' => ['type' => 2],
         ]);
+        $this->hasMany('Lawyers', [
+            'className'=>'Lawyers',
+            'foreignKey' => 'application_id'
+        ]);
         $this->hasMany('Payments', [
             'foreignKey' => 'application_id'
         ]);

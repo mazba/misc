@@ -8,6 +8,8 @@ use Cake\View\View;
 use Cake\ORM\TableRegistry;
 use Cake\Routing\Router;
 use Cake\Cache\Cache;
+use Hashids\Hashids;
+
 /**
  * My helper
  * created by: Mazba Kamal
@@ -24,8 +26,14 @@ class MyHelper extends Helper
     /*
      * string encode for URL
      */
-    public function encodeString($str){
-        return Security::encrypt($str, Configure::read('security_key'));
+    public function hashids()
+    {
+        $security = Configure::read('security');
+        return $hashids = new Hashids(
+            $security['salt'],
+            $security['min_hash_length'],
+            $security['alphabet']
+        );
     }
     public function get_tree_menu()
     {
