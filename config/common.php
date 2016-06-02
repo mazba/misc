@@ -58,5 +58,10 @@ return [
     'lawyers_type'=>[
         'appellant'=>1,
         'defendant'=>2
+    ],
+    'security'=>[
+        'salt' => 'fsdfsdLwQGrLgdboMAZBAscakeFS1',
+        'min_hash_length' => 8,
+        'alphabet' => 'abcdefghijklmnopqrstuvwxyz0123456789'
     ]
 ];
