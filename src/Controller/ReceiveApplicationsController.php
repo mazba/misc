@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Core\Configure;
+use Cake\Datasource\ConnectionManager;
 use Cake\ORM\TableRegistry;
 use Cake\Utility\Security;
 
@@ -76,49 +77,77 @@ class ReceiveApplicationsController extends AppController
                 'contain'=>['ParentApplications','Appellants','Defendants','ApplicationFiles','Lawyers','Upazilas','Moujas']
             ]
         );
+        if($application->status != Configure::read('application_status')['Pending']){
+            $this->Flash->warning('The application already received/reject');
+            return $this->redirect(['action' => 'index']);
+        }
         if ($this->request->is(['post','put'])) {
-            $user = $this->Auth->user();
-            $input = $this->request->data;
-            if(isset($input['inspection']['check']))
-                $application->status = Configure::read('application_status')['Investigating'];
-            else
-                $application->status = Configure::read('application_status')['Approved'];
-            if($this->Applications->save($application)){
-                //insert hearing
-                $data_hearing['office_id'] = $application['office_id'];
-                $data_hearing['application_id'] = $id;
-                $data_hearing['hearing_time'] = strtotime($input['hearing']['hearing_time']);
-                $data_hearing['location'] = $input['hearing']['location'];
-                $data_hearing['status'] = 1;
-                $data_hearing['create_by'] = $user['id'];
-                $data_hearing['create_time'] = time();
-                $hearingTbl = TableRegistry::get('hearings');
-                $hearingEntity = $hearingTbl->newEntity();
-                $hearingEntity = $hearingTbl->patchEntity($hearingEntity, $data_hearing);
-                if ($hearingTbl->save($hearingEntity)) {
-                    $inspectionTbl = TableRegistry::get('inspections');
-                    $inspectionEntity = $inspectionTbl->newEntity();
-                    $data_inspection['office_id'] = $application['office_id'];
-                    $data_inspection['application_id'] = $id;
-                    $data_inspection['inspection_date'] = strtotime($input['inspection']['inspection_date']);
-                    $inspectionEntity = $hearingTbl->patchEntity($inspectionEntity, $data_inspection);
-                    if (!$inspectionTbl->save($inspectionEntity)) {
-                    return false;
+            try {
+                $user = $this->Auth->user();
+                $input = $this->request->data;
+                $conn = ConnectionManager::get('default');
+                $conn->transactional(function () use ($id,$application, $user, $input) {
+                    //application data
+                    if(isset($input['inspection']['check']) && $input['inspection']['check'])
+                        $application->status = Configure::read('application_status')['Investigating'];
+                    else
+                        $application->status = Configure::read('application_status')['Approved'];
+
+                    $application->case_number = $input['case_number'];
+                    $application->case_receive_time = time();
+                    $application->case_receive_by = $user['id'];
+                    if($this->Applications->save($application)){
+                        //insert hearing
+                        $hearingTbl = TableRegistry::get('hearings');
+                        $hearingEntity = $hearingTbl->newEntity();
+                        $data_hearing['office_id'] = $application['office_id'];
+                        $data_hearing['application_id'] = $id;
+                        $data_hearing['hearing_time'] = strtotime($input['hearing']['hearing_time']);
+                        $data_hearing['location'] = $input['hearing']['location'];
+                        $data_hearing['status'] = 1;
+                        $data_hearing['create_by'] = $user['id'];
+                        $data_hearing['create_time'] = time();
+                        $hearingEntity = $hearingTbl->patchEntity($hearingEntity, $data_hearing);
+                        if ($hearingTbl->save($hearingEntity)) {
+                            //insert inspection data
+                            if(isset($input['inspection']['check']) && $input['inspection']['check']){
+                                $inspectionTbl = TableRegistry::get('inspections');
+                                $inspectionEntity = $inspectionTbl->newEntity();
+                                $data_inspection['office_id'] = $application['office_id'];
+                                $data_inspection['application_id'] = $id;
+                                $data_inspection['inspection_date'] = strtotime($input['inspection']['inspection_date']);
+                                $data_inspection['create_by'] = $user['id'];
+                                $data_inspection['create_time'] = time();
+                                $inspectionEntity = $hearingTbl->patchEntity($inspectionEntity, $data_inspection);
+                                if (!$inspectionTbl->save($inspectionEntity)) {
+                                    return false;
+                                }
+                            }
+                            // application remarks
+                            $remarksTbl = TableRegistry::get('application_remarks');
+                            $remarksEntity = $remarksTbl->newEntity();
+                            $remarksEntity->application_id = $id;
+                            $remarksEntity->remarks = $input['remarks'];
+                            $remarksEntity->application_status = $application->status;
+                            $remarksEntity->user_id = $user['id'];
+                            $remarksEntity->create_time = time();
+                            if (!$remarksTbl->save($remarksEntity)) {
+                                return false;
+                            }
+                            //TODO::send message and mail to user
+                        }
+                        else
+                            return false;
                     }
-                }
+                    else
+                        return false;
+                    //redirect to index
+                    $this->Flash->success('Application Received Successfully');
+                    return $this->redirect(['action' => 'index']);
+                });
             }
-            else
-                return false;
-            echo '<pre>';
-            print_r($this->request->data);
-            echo '</pre>';
-            die;
-            $receiveApplication = $this->ReceiveApplications->patchEntity($receiveApplication, $this->request->data);
-            if ($this->ReceiveApplications->save($receiveApplication)) {
-                $this->Flash->success(__('The receive application has been saved.'));
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The receive application could not be saved. Please, try again.'));
+            catch (\Exception $e) {
+                $this->Flash->error('Application could not be Received. Please, try again.');
             }
         }
         $this->set(compact('application'));
@@ -142,20 +171,27 @@ class ReceiveApplicationsController extends AppController
         }
         $id = $pram[0];// here id is first pram
         if ($this->request->is(['patch', 'post', 'put'])) {
-            echo '<pre>';
-            print_r($this->request->data);
-            echo '</pre>';
-            die;
-            $receiveApplication = $this->ReceiveApplications->patchEntity($receiveApplication, $this->request->data);
-            if ($this->ReceiveApplications->save($receiveApplication)) {
-                $this->Flash->success(__('The receive application has been saved.'));
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The receive application could not be saved. Please, try again.'));
+            $input = $this->request->data;
+            $user = $this->Auth->user();
+            $application = $this->Applications->get($id);
+            $application->status =  Configure::read('application_status')['Reject'];
+            if($this->Applications->save($application)){
+                // application remarks
+                $remarksTbl = TableRegistry::get('application_remarks');
+                $remarksEntity = $remarksTbl->newEntity();
+                $remarksEntity->application_id = $id;
+                $remarksEntity->remarks = $input['remarks'];
+                $remarksEntity->application_status = $application->status;
+                $remarksEntity->user_id = $user['id'];
+                $remarksEntity->create_time = time();
+                $remarksTbl->save($remarksEntity);
+                $this->Flash->success(__('The application Reject successfully'));
+            }
+            else{
+                $this->Flash->error(__('The application could not be reject. Please try again.'));
             }
         }
-        $this->set(compact('receiveApplication'));
-        $this->set('_serialize', ['receiveApplication']);
+        return $this->redirect(['action' => 'index']);
     }
     public function ajax($action=''){
 

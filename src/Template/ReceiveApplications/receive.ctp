@@ -195,6 +195,7 @@ use Cake\Core\Configure;
                                         </div>
                                         <?php echo $this->Form->input('hearing[location]',['rows'=>1,'type'=>'textarea','required','label'=>__('Hearing Location')]); ?>
                                         <?php echo $this->Form->input('remarks',['required','type'=>'textarea','label'=>__('Remarks'),'rows'=>2,'templates'=>['input' => '<div class="col-sm-4 container_{{name}}"> <input {{attrs}} class="form-control" type="{{type}}" name="{{name}}"></div>']]); ?>
+                                        <?php echo $this->Form->input('case_number',['required','label'=>__('Case Number'),'templates'=>['input' => '<div class="col-sm-4 container_{{name}}"> <input {{attrs}} class="form-control" type="{{type}}" name="{{name}}"></div>']]); ?>
                                         <?php echo $this->Form->input('inspection[check]',['type'=>'checkbox','label'=>__('Send for Inspection'),'templates'=>['input' => '<div class="col-sm-3 container_{{name}}"> <input {{attrs}} class="form-control" type="{{type}}" name="{{name}}"></div>']]); ?>
                                         <div id="inspection_wrp" style="display: none">
                                             <?php echo $this->Form->input('inspection[inspection_date]',['class'=>'form-control datepicker','label'=>__('Inspection Date')]); ?>
