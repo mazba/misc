@@ -68,12 +68,12 @@
     padding-top: 8px;
 }
 /*box wrapper color*/
-.jomi_box{
+.my_box{
     -moz-border-bottom-colors: none;
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
-    border-bottom-color: #8DC541;
+    border-bottom-color: #459EBC;
     border-bottom-style: solid;
     border-bottom-width: 1px;
     border-image-outset: 0 0 0 0;
@@ -81,18 +81,18 @@
     border-image-slice: 100% 100% 100% 100%;
     border-image-source: none;
     border-image-width: 1 1 1 1;
-    border-left-color: #8DC541;
+    border-left-color: #459EBC;
     border-left-style: solid;
     border-left-width: 1px;
-    border-right-color: #8DC541;
+    border-right-color: #459EBC;
     border-right-style: solid;
     border-right-width: 1px;
     border-top-color: -moz-use-text-color;
     border-top-style: none;
     border-top-width: 0;
 }
-.portlet.box.jomi_box > .portlet-title{
-    background-color: #8DC541;
+.portlet.box.my_box > .portlet-title{
+    background-color: #459EBC;
 }
 /*theme change*/
 .page-header.navbar .page-logo{
