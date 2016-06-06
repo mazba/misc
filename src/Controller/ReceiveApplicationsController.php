@@ -118,6 +118,7 @@ class ReceiveApplicationsController extends AppController
                                 $data_inspection['inspection_date'] = strtotime($input['inspection']['inspection_date']);
                                 $data_inspection['create_by'] = $user['id'];
                                 $data_inspection['create_time'] = time();
+                                $data_inspection['status'] = Configure::read('inspections_status')['pending'];
                                 $inspectionEntity = $hearingTbl->patchEntity($inspectionEntity, $data_inspection);
                                 if (!$inspectionTbl->save($inspectionEntity)) {
                                     return false;

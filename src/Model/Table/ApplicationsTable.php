@@ -78,6 +78,12 @@ class ApplicationsTable extends Table
         $this->hasMany('InspectionResultFiles', [
             'foreignKey' => 'application_id'
         ]);
+        $this->hasMany('Inspections', [
+            'foreignKey' => 'application_id'
+        ]);
+        $this->hasMany('ApplicationRemarks', [
+            'foreignKey' => 'application_id'
+        ]);
         $this->hasMany('InspectionResults', [
             'foreignKey' => 'application_id'
         ]);

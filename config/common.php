@@ -51,6 +51,10 @@ return [
         'Investigating'=>3,
         'Closed'=>4,
     ],
+    'inspections_status'=>[
+      'pending'=>1,
+      'done'=>2
+    ],
     'party_type'=>[
         'appellant'=>1,
         'defendant'=>2
