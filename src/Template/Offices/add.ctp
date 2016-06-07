@@ -70,7 +70,7 @@ $office_level = Configure::read('office_level');
         $('#district').hide();
         $('#upazila').hide();
 
-        $(document).on('change', '#office-types', function () {
+        $(document).on('change', '#office-type', function () {
             var office_type = $(this).val();
 
             if (office_type) {
@@ -81,7 +81,7 @@ $office_level = Configure::read('office_level');
         });
 
         $(document).on('change', '#division-id', function () {
-            var office_type = $('#office-types').val();
+            var office_type = $('#office-type').val();
 
             if (office_type > 2) {
                 $('#district').show();
@@ -115,7 +115,7 @@ $office_level = Configure::read('office_level');
             }
         });
         $(document).on('change', '#district-id', function () {
-            var office_type = $('#office-types').val();
+            var office_type = $('#office-type').val();
             if (office_type > 3) {
                 $('#upazila').show();
                 var district_id = $(this).val();
