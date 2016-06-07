@@ -49,7 +49,8 @@ return [
         'Pending'=>1,
         'Approved'=>2,
         'Investigating'=>3,
-        'Closed'=>4,
+        'Investigated'=>4,
+        'Closed'=>5,
     ],
     'inspections_status'=>[
       'pending'=>1,

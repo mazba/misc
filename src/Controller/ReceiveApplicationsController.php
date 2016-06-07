@@ -96,6 +96,8 @@ class ReceiveApplicationsController extends AppController
                     $application->case_number = $input['case_number'];
                     $application->case_receive_time = time();
                     $application->case_receive_by = $user['id'];
+                    $application->update_time = time();
+                    $application->update_by = $user['id'];
                     if($this->Applications->save($application)){
                         //insert hearing
                         $hearingTbl = TableRegistry::get('hearings');
