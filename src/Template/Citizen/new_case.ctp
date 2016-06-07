@@ -13,7 +13,7 @@ $lawyers_type = Configure::read('lawyers_type');
 </style>
 <div class="row">
     <div class="col-md-9" style="border-right: 1px dotted #EDB0AF">
-        <?= $this->Form->create($application, ['class' => 'form-horizontal', 'role' => 'form']) ?>
+        <?= $this->Form->create($application, ['type' => 'file','class' => 'form-horizontal', 'role' => 'form']) ?>
         <div class="row">
             <div class="col-md-6">
                 <?php
@@ -57,12 +57,12 @@ $lawyers_type = Configure::read('lawyers_type');
                 <div class="row">
                     <div class="col-md-6">
                         <?php
-                        echo $this->Form->input('application_file.0.title', ['id' => '', 'type' => 'text']);
+                        echo $this->Form->input('application_files.0.title', ['id' => '', 'type' => 'text']);
                         ?>
                     </div>
                     <div class="col-md-6">
                         <?php
-                        echo $this->Form->input('application_file.0.file_location', ['id' => '', 'type' => 'file']);
+                        echo $this->Form->input('application_files.0.file_location', ['id' => '', 'type' =>'file','class'=>'form-control']);
                         ?>
                     </div>
                     <div class="col-md-4 col-md-offset-10">
@@ -81,18 +81,18 @@ $lawyers_type = Configure::read('lawyers_type');
                     <hr/>
                     <div class="col-md-6">
                         <?php
-                        echo $this->Form->input('appellant.0.name', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
-                        echo $this->Form->input('appellant.0.father_name', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
-                        echo $this->Form->input('appellant.0.mother_name', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
-                        echo $this->Form->input('appellant.0.village', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
+                        echo $this->Form->input('appellants.0.name', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
+                        echo $this->Form->input('appellants.0.father_name', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
+                        echo $this->Form->input('appellants.0.mother_name', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
+                        echo $this->Form->input('appellants.0.village', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
                         ?>
                     </div>
                     <div class="col-md-6">
                         <?php
-                        echo $this->Form->input('appellant.0.mobile', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
-                        echo $this->Form->input('appellant.0.phone', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
-                        echo $this->Form->input('appellant.0.email', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
-                        echo $this->Form->input('appellant.0.type', ['type' => 'hidden', 'value' => $party_typ['appellant']]);
+                        echo $this->Form->input('appellants.0.mobile', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
+                        echo $this->Form->input('appellants.0.phone', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
+                        echo $this->Form->input('appellants.0.email', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
+                        echo $this->Form->input('appellants.0.type', ['type' => 'hidden', 'value' => $party_typ['appellant']]);
                         ?>
 
                     </div>
@@ -112,18 +112,18 @@ $lawyers_type = Configure::read('lawyers_type');
 
                     <div class="col-md-6">
                         <?php
-                        echo $this->Form->input('defendant.0.name', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
-                        echo $this->Form->input('defendant.0.father_name', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
-                        echo $this->Form->input('defendant.0.mother_name', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
-                        echo $this->Form->input('defendant.0.village', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
+                        echo $this->Form->input('defendants.0.name', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
+                        echo $this->Form->input('defendants.0.father_name', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
+                        echo $this->Form->input('defendants.0.mother_name', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
+                        echo $this->Form->input('defendants.0.village', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
                         ?>
                     </div>
                     <div class="col-md-6">
                         <?php
-                        echo $this->Form->input('defendant.0.mobile', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
-                        echo $this->Form->input('defendant.0.phone', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
-                        echo $this->Form->input('defendant.0.email', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
-                        echo $this->Form->input('defendant.0.type', ['type' => 'hidden', 'value' => $party_typ['appellant']]);
+                        echo $this->Form->input('defendants.0.mobile', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
+                        echo $this->Form->input('defendants.0.phone', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
+                        echo $this->Form->input('defendants.0.email', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
+                        echo $this->Form->input('defendants.0.type', ['type' => 'hidden', 'value' => $party_typ['appellant']]);
                         ?>
 
                     </div>
@@ -145,18 +145,18 @@ $lawyers_type = Configure::read('lawyers_type');
 
                     <div class="col-md-6">
                         <?php
-                        echo $this->Form->input('lawyer.0.name', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
-                        echo $this->Form->input('lawyer.0.address', ['type' => 'textarea', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
-                        echo $this->Form->input('lawyer.0.okalotnama_file', ['type' => 'file', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
+                        echo $this->Form->input('lawyers.0.name', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
+                        echo $this->Form->input('lawyers.0.address', ['type' => 'textarea', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
+                        echo $this->Form->input('lawyers.0.okalotnama_file', ['type' => 'file', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
 
                         ?>
                     </div>
                     <div class="col-md-6">
                         <?php
-                        echo $this->Form->input('lawyer.0.mobile', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
-                        echo $this->Form->input('lawyer.0.phone', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
-                        echo $this->Form->input('lawyer.0.email', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
-                        echo $this->Form->input('lawyer.0.party_type', ['type' => 'hidden', 'value' => $lawyers_type['appellant']]);
+                        echo $this->Form->input('lawyers.0.mobile', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
+                        echo $this->Form->input('lawyers.0.phone', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
+                        echo $this->Form->input('lawyers.0.email', ['type' => 'text', 'templates' => ['inputContainer' => '<div id="" class="common form-group input {{type}}{{required}}">{{content}}</div>']]);
+                        echo $this->Form->input('lawyers.0.party_type', ['type' => 'hidden', 'value' => $lawyers_type['appellant']]);
                         ?>
 
                     </div>
@@ -397,7 +397,7 @@ $lawyers_type = Configure::read('lawyers_type');
 
         //For add new file option
         $(document).on('click', '.add_file', function () {
-               
+
             var qq = $('#file_wrapper').attr('data-index_no');
             var index = parseInt(qq);
 

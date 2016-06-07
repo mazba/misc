@@ -117,6 +117,7 @@ License: You must have a valid license purchased only from softbd
     <div class="clearfix"></div>
     <!-- BEGIN CONTAINER -->
     <div class="page-container">
+        <?= $this->Flash->render() ?>
         <?php echo $this->fetch('content'); ?>
     </div>
     <div id="loader">

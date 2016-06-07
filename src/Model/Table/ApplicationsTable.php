@@ -149,8 +149,7 @@ class ApplicationsTable extends Table
 
         $validator
             ->integer('create_by')
-            ->requirePresence('create_by', 'create')
-            ->notEmpty('create_by');
+            ->allowEmpty('create_by');
 
         $validator
             ->integer('update_time')
