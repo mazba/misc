@@ -47,7 +47,7 @@ class OfficesTable extends Table
         ]);
         $this->belongsTo('Districts', [
             'foreignKey' => 'district_id',
-            'joinType' => 'INNER'
+            'joinType' => 'left'
         ]);
         $this->belongsTo('Upazilas', [
             'foreignKey' => 'upazila_id'
@@ -113,8 +113,7 @@ class OfficesTable extends Table
             ->allowEmpty('address');
 
         $validator
-            ->requirePresence('description', 'create')
-            ->notEmpty('description');
+            ->allowEmpty('description');
 
         $validator
             ->integer('status')
@@ -148,11 +147,11 @@ class OfficesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['email']));
-        $rules->add($rules->existsIn(['parent_id'], 'ParentOffices'));
-        $rules->add($rules->existsIn(['division_id'], 'Divisions'));
-        $rules->add($rules->existsIn(['district_id'], 'Districts'));
-        $rules->add($rules->existsIn(['upazila_id'], 'Upazilas'));
+       // $rules->add($rules->isUnique(['email']));
+      //  $rules->add($rules->existsIn(['parent_id'], 'ParentOffices'));
+    //    $rules->add($rules->existsIn(['division_id'], 'Divisions'));
+      //  $rules->add($rules->existsIn(['district_id'], 'Districts'));
+      //  $rules->add($rules->existsIn(['upazila_id'], 'Upazilas'));
         return $rules;
     }
 }

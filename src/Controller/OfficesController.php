@@ -18,9 +18,11 @@ class OfficesController extends AppController
      */
     public function index()
     {
+
         $this->paginate = [
             'contain' => ['ParentOffices', 'Divisions', 'Districts', 'Upazilas']
         ];
+
         $offices = $this->paginate($this->Offices);
 
         $this->set(compact('offices'));
@@ -61,8 +63,7 @@ class OfficesController extends AppController
             $data['update_time'] = $time;
 
             $office = $this->Offices->patchEntity($office, $data);
-//            echo"<pre/>";
-//            print_r(  $office);die();
+  //  echo "<pre>";print_r($office);die();
             if ($this->Offices->save($office)) {
                 $this->Flash->success(__('The office has been saved.'));
                 return $this->redirect(['action' => 'index']);

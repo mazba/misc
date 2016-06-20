@@ -321,6 +321,9 @@ $lawyers_type = Configure::read('lawyers_type');
             else {
                 $('#parent-id').attr('readonly', 'readonly');
             }
+            if(!$(this).is(":checked")){ //checks if the checkbox/this is selected or not
+                $("#parent-id").val(""); //empty the input value
+            }
         });
 
         //For add new appellant option
